@@ -1,5 +1,7 @@
 # Trading Card Catalog Viewer (Svelte Version)
 
+Live: https://tcg-viewer.lewee.link/
+
 SvelteKit viewer for the TCG card catalog and price tracking API.
 Replaces the React `tcg-viewer` SPA (kept unchanged in its own repository).
 
