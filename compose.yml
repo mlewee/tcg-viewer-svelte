@@ -1,0 +1,42 @@
+# Production compose for the tcg-frontend static site.
+#
+# Assumes the shared `infra/` services (traefik) and the Go `tcg`
+# backend are running on the external `app-network`.
+#
+# Required env: DOMAIN (used by the Traefik Host rules).
+# PUBLIC_API_BASE is baked in at image build time (see Dockerfile);
+# leave it empty so the browser sends same-origin /api/* requests,
+# which the `tcg-frontend-api` router below forwards to the Go API
+# service (`tcg-go@docker`, registered by server-stack/tcg/compose.yml).
+#
+# No per-service HTTP->HTTPS redirect router: infra's `web`
+# entrypoint already redirects everything to `websecure` globally.
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tcg-frontend:latest
+    container_name: tcg-frontend
+    restart: unless-stopped
+    networks:
+      - app-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.tcg-frontend.rule=Host(`tcg-frontend.${DOMAIN}`)
+      - traefik.http.routers.tcg-frontend.entrypoints=websecure
+      - traefik.http.routers.tcg-frontend.tls.certresolver=letsencrypt
+      - traefik.http.services.tcg-frontend.loadbalancer.server.port=80
+      # /api/* -> Go API service. Higher priority than the viewer
+      # router so it wins for the /api/ path.
+      - traefik.http.routers.tcg-frontend-api.rule=Host(`tcg-frontend.${DOMAIN}`) && PathPrefix(`/api/`)
+      - traefik.http.routers.tcg-frontend-api.entrypoints=websecure
+      - traefik.http.routers.tcg-frontend-api.tls.certresolver=letsencrypt
+      - traefik.http.routers.tcg-frontend-api.service=tcg-go@docker
+      - traefik.http.routers.tcg-frontend-api.priority=100
+
+networks:
+  app-network:
+    name: app-network
+    external: true

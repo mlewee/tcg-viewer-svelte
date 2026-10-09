@@ -1,0 +1,9 @@
+# Development override for tcg-frontend.
+# Usage: docker compose -f compose.yml -f compose.dev.yml up --build
+#
+# Publishes nginx on localhost:8081 for direct access (no Traefik
+# needed). For hot-reload iteration use `npm run dev` instead.
+services:
+  frontend:
+    ports:
+      - "127.0.0.1:8081:80"
