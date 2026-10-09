@@ -46,6 +46,46 @@
   </div>
 
   <div class="section">
+    <h3>Image &amp; Data Credits</h3>
+    <ul class="credits">
+      <li>
+        Prices, metadata and fallback card scans:
+        <a href="https://yuyu-tei.net" target="_blank" rel="noopener noreferrer">yuyu-tei.net</a>
+        (<a href="https://card.yuyu-tei.jp" target="_blank" rel="noopener noreferrer">card.yuyu-tei.jp</a>)
+      </li>
+      <li>
+        hololive artwork:
+        <a
+          href="https://hololive-official-cardgame.com"
+          target="_blank"
+          rel="noopener noreferrer">hololive Official Card Game</a
+        >
+        card list
+      </li>
+      <li>
+        One Piece artwork:
+        <a
+          href="https://en.onepiece-cardgame.com"
+          target="_blank"
+          rel="noopener noreferrer">Bandai (EN card list)</a
+        >
+        /
+        <a
+          href="https://www.onepiece-cardgame.com"
+          target="_blank"
+          rel="noopener noreferrer">Bandai (JA card list)</a
+        >, with fallback images from
+        <a href="https://limitlesstcg.com" target="_blank" rel="noopener noreferrer">Limitless TCG</a>
+      </li>
+    </ul>
+    <p class="small muted">
+      Unofficial fan viewer. All card images, names and game data belong to their respective owners
+      (Bandai, hololive production / COVER Corp., yuyu-tei and others). No affiliation or endorsement
+      is implied.
+    </p>
+  </div>
+
+  <div class="section">
     <div class="changelog-head">
       <h3>Frontend Changelog</h3>
       <span class="semver">Semantic Versioning</span>
@@ -123,6 +163,16 @@
     color: var(--color-text);
   }
   .small {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+  .small.muted {
+    margin-top: 0.5rem;
+    color: var(--color-subtext0);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+  .credits {
     font-size: 0.85rem;
     margin: 0;
   }
