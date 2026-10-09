@@ -3,7 +3,7 @@
 SvelteKit viewer for the TCG card catalog and price tracking API.
 Replaces the React `tcg-viewer` SPA (kept unchanged in its own repository).
 
-This project is a test for using svelte instead of react/vue like my pass projects
+This project is a test for using svelte instead of react/vue like my past projects
 
 - SvelteKit + Svelte 5 runes + TypeScript + plain CSS, no CSS framework
 - `@sveltejs/adapter-static` output in `build/` (Cloudflare Pages compatible)
